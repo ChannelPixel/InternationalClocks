@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:danielCherrin_MajorAppIntClocks"
+             x:Class="danielCherrin_MajorAppIntClocks.MainPage"
+             BackgroundColor="#1c1c1c">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="btn_addClock" Grid.Column="0" Grid.Row="0" TextColor="#1c1c1c" BackgroundColor="Gainsboro"
+                Text="Add Clock" Clicked="btn_addClock_Clicked" IsEnabled="False"/>
+
+            <ListView x:Name="lstvw_timezones" Grid.Column="1" Grid.Row="0" HeightRequest="200" ItemSelected="lstvw_timezones_ItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding timezone}" TextColor="Gainsboro">
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <ListView x:Name="lstvw_clocks" Grid.Column="0" Grid.Row="1">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Text="{Binding timezone}" FontSize="Large" TextColor="Gainsboro"/>
+                            <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Start" VerticalOptions="Center" Text="{Binding utc_offset}" FontSize="Default" TextColor="Gainsboro"/>
+                            <Label Grid.Row="1" Text="{Binding currentDateTime}" FontSize="Small" TextColor="Gainsboro"/>
+                        </Grid>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Delete Timer" IsDestructive="True" CommandParameter="{Binding .}" Clicked="MenuItem_Clicked"/>
+                        </ViewCell.ContextActions>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+    </Grid>
+
+</ContentPage>
